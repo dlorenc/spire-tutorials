@@ -12,6 +12,7 @@ spec:
     metadata:
       labels:
         app: client
+        tekton.dev/taskRun: foo
     spec:
       hostPID: true
       hostNetwork: true

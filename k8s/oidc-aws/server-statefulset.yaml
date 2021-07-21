@@ -51,6 +51,18 @@ spec:
               port: 8080
             initialDelaySeconds: 5
             periodSeconds: 5
+        - name: spire-registrar
+          image: gcr.io/spiffe-io/k8s-workload-registrar:0.12.0
+          args:
+            - -config
+            - /run/k8s-workload-registrar/config/registrar.conf
+          volumeMounts:
+            - name: spire-server-socket
+              mountPath: /run/spire/sockets
+              readOnly: false
+            - name: k8s-workload-registrar-config
+              mountPath: /run/k8s-workload-registrar/config
+              readOnly: true
         - name: spire-oidc
           image: gcr.io/spiffe-io/oidc-discovery-provider:0.12.0
           args:
@@ -85,6 +97,9 @@ spec:
         - name: spire-oidc-config
           configMap:
             name: oidc-discovery-provider
+        - name: k8s-workload-registrar-config
+          configMap:
+            name: k8s-workload-registrar
   volumeClaimTemplates:
     - metadata:
         name: spire-data

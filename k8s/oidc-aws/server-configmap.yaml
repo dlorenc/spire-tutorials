@@ -9,7 +9,7 @@ data:
       bind_address = "0.0.0.0"
       bind_port = "8081"
       registration_uds_path = "/run/spire/sockets/registration.sock"
-      trust_domain = "example.org"
+      trust_domain = "oidc.dlorenc.dev"
       data_dir = "/run/spire/data"
       log_level = "DEBUG"
       experimental {
@@ -27,7 +27,7 @@ data:
 
       # Creates the iss claim in JWT-SVIDs.
       # TODO: Replace MY_DISCOVERY_DOMAIN with the FQDN of the Discovery Provider that you will configure in DNS
-      jwt_issuer = "https://MY_DISCOVERY_DOMAIN"
+      jwt_issuer = "https://oidc.dlorenc.dev"
 
       default_svid_ttl = "1h"
       ca_subject = {
